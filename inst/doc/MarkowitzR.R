@@ -1,4 +1,3 @@
-
 ## ----'preamble', include=FALSE, warning=FALSE, message=FALSE, cache=FALSE----
 library(knitr)
 
@@ -53,8 +52,7 @@ lseq <- function(from,to,length.out) {
 	exp(seq(log(from),log(to),length.out = length.out))
 }
 
-
-## ----'the_proc',echo=TRUE,cache=FALSE------------------------------------
+## ----'the_proc',echo=TRUE,cache=FALSE-------------------------
 require(gtools)
 # set the colnames of X appropriately
 set.coln <- defmacro(X,expr={
@@ -113,8 +111,7 @@ do.all <- function(rets,...) {
 n.day <- 1000
 n.stock <- 5
 
-
-## ----'me_vs_bjones',echo=TRUE--------------------------------------------
+## ----'me_vs_bjones',echo=TRUE---------------------------------
 # under the null: all returns are zero mean;
 set.seed(as.integer(charToRaw("7af85b0b-e521-4059-bebe-55ad9a9a0456")))
 rets <- matrix(rnorm(n.day * n.stock),nrow=n.day)
@@ -126,15 +123,13 @@ set.seed(as.integer(charToRaw("464dcbea-375b-49d0-8f38-b48b5a33c7ea")))
 rets <- matrix(rnorm(n.day * n.stock,mean=1e-1),nrow=n.day)
 print(do.all(rets))
 
-
-## ----'get_mp',echo=TRUE--------------------------------------------------
+## ----'get_mp',echo=TRUE---------------------------------------
 # returns under the alternative
 set.seed(as.integer(charToRaw("464dcbea-375b-49d0-8f38-b48b5a33c7ea")))
 rets <- matrix(rnorm(n.day * n.stock,mean=1e-1),nrow=n.day)
 print(wrap.itheta(rets,ret.what='mp'))
 
-
-## ----'multiple_correlation',echo=TRUE,cache=FALSE------------------------
+## ----'multiple_correlation',echo=TRUE,cache=FALSE-------------
 # multiple correlation coefficients of portfolio
 # error to precision errors.
 mult.cor <- function(rets,...) {
@@ -151,14 +146,12 @@ set.seed(as.integer(charToRaw("464dcbea-375b-49d0-8f38-b48b5a33c7ea")))
 rets <- matrix(rnorm(n.day * n.stock,mean=8e-2),nrow=n.day)
 print(signif(100 * mult.cor(rets),digits=2))
 
-
-## ----'multiple_correlation2',echo=TRUE,cache=FALSE-----------------------
+## ----'multiple_correlation2',echo=TRUE,cache=FALSE------------
 set.seed(as.integer(charToRaw("464dcbea-375b-49d0-8f38-b48b5a33c7ea")))
 rets <- matrix(rnorm(n.day * n.stock,mean=1.6e-1),nrow=n.day)
 print(signif(100 * mult.cor(rets),digits=2))
 
-
-## ----'conditional',echo=TRUE---------------------------------------------
+## ----'conditional',echo=TRUE----------------------------------
 # generate data with given W, Sigma
 Xgen <- function(W,Sigma,Feat) {
  Btrue <- Sigma %*% W
@@ -182,7 +175,6 @@ ism <- mp_vcov(X,feat=Feat,fit.intercept=TRUE)
 # fit
 Wcomp <- cbind(0,Wtrue)
 
-
 ## ----'scatfit',echo=TRUE,cache=FALSE,fig.cap=paste("Scatter of the fit value against the true value of the Markowitz Coefficien is shown, for",n.ret,"assets, and",n.feat,"predictive features, given",n.obs,"days of observations of Gaussian returns. The $y=x$ line is plotted in green.")----
 # scatter them against each other
 w.true <- Wcomp
@@ -193,7 +185,6 @@ plot(w.true, w.fit, main="Markowitz coefficient",
   	 xlab="True Value ", ylab="Fit Value ", pch=1)
 #abline(lm(w.fit ~ w.true), col="red") 
 abline(a=0,b=1, col="green") 
-
 
 ## ----'check_normality',echo=TRUE,cache=FALSE,fig.cap=paste("Sample quantiles of the error of the \\txtMC, transformed to approximate unit covariance using the estimated covariance, are plotted against those of the normal.")----
 n.feat <- 4
@@ -216,8 +207,7 @@ Zerr <- solve(t(chol(ism$What)),errs)
 qqnorm(Zerr)
 qqline(Zerr,col=2)
 
-
-## ----'cons_zero',echo=TRUE,cache=FALSE-----------------------------------
+## ----'cons_zero',echo=TRUE,cache=FALSE------------------------
 # first for the case where the real Markowitz Portfolio is actually
 # just 'the market': equal dollar long in each stock.
 set.seed(as.integer(charToRaw("dbeebe3f-da7e-4d11-b014-feac88a1d6cb")))
@@ -241,8 +231,7 @@ print(wrap.mp(rets,Jmat=Jmat))
 # and print the portfolio too:
 print(wrap.mp(rets,ret.what='mp',Jmat=Jmat))
 
-
-## ----'cons_one',echo=TRUE,cache=FALSE------------------------------------
+## ----'cons_one',echo=TRUE,cache=FALSE-------------------------
 
 # first for the case where the real Markowitz Portfolio is actually
 # equal dollar long in each stock.
@@ -262,8 +251,7 @@ print(wrap.mp(rets,Gmat=Gmat))
 # and print the portfolio too:
 print(wrap.mp(rets,ret.what='mp',Gmat=Gmat))
 
-
-## ----'rao_giri',echo=TRUE,eval=TRUE--------------------------------------
+## ----'rao_giri',echo=TRUE,eval=TRUE---------------------------
 rao.giri <- function(rets,Gmat,...) {
 	set.coln(rets)
 	asymv <- mp_vcov(as.matrix(rets),Gmat=Gmat,...)
@@ -285,19 +273,17 @@ rets <- matrix(rnorm(n.day * n.stock,mean=1e-1),nrow=n.day)
 Gmat <- matrix(rnorm(n.stock),nrow=1,ncol=n.stock)
 print(rao.giri(rets,Gmat)$wald)
 
+## ----'ff_load',eval=FALSE,echo=TRUE---------------------------
+#  ff.data <- read.csv(paste0('http://www.quandl.com/api/v1/datasets/',
+#  'KFRENCH/FACTORS_M.csv?&trim_start=1926-07-31&trim_end=2013-10-31',
+#  '&sort_order=asc'), colClasses=c('Month'='Date'))
+#  
+#  rownames(ff.data) <- ff.data$Month
+#  ff.data <- ff.data[,! (colnames(ff.data) %in% c("Month"))]
+#  # will not matter, but convert pcts:
+#  ff.data <- 1e-2 * ff.data
 
-## ----'ff_load',eval=FALSE,echo=TRUE--------------------------------------
-## ff.data <- read.csv(paste0('http://www.quandl.com/api/v1/datasets/',
-## 'KFRENCH/FACTORS_M.csv?&trim_start=1926-07-31&trim_end=2013-10-31',
-## '&sort_order=asc'), colClasses=c('Month'='Date'))
-## 
-## rownames(ff.data) <- ff.data$Month
-## ff.data <- ff.data[,! (colnames(ff.data) %in% c("Month"))]
-## # will not matter, but convert pcts:
-## ff.data <- 1e-2 * ff.data
-
-
-## ----'ff_load_sneaky',eval=TRUE,echo=FALSE-------------------------------
+## ----'ff_load_sneaky',eval=TRUE,echo=FALSE--------------------
 # sleight of hand to load precomputed data instead.
 fname <- system.file('extdata','ff_data.rda',package='MarkowitzR')
 if (fname == "") {
@@ -306,8 +292,7 @@ if (fname == "") {
 # poofs ff.data here
 load(fname)
 
-
-## ----'ff_process',echo=TRUE,cachc=TRUE-----------------------------------
+## ----'ff_process',echo=TRUE,cachc=TRUE------------------------
 rfr <- ff.data[,'RF']
 
 ff.ret <- cbind(ff.data[,'Mkt.RF'],
@@ -319,5 +304,4 @@ print(do.both(ff.ret))
 if (require(sandwich)) {
 	print(do.both(ff.ret,vcov.func=sandwich::vcovHAC))
 }
-
 

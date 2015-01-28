@@ -69,10 +69,10 @@
 #' and features will be multiplied by the weights. Weights should be
 #' inverse volatility estimates. Defaults to homoskedasticity.
 #' @param Jmat an optional \eqn{p_j \times p}{pj x p} matrix of the
-#' subspace in which we constraint portfolios. Defaults essentially to the
+#' subspace in which we constrain portfolios. Defaults essentially to the
 #' \eqn{p \times p}{p x p} identity matrix.
 #' @param Gmat an optional \eqn{p_g \times p}{pg x p} matrix of the
-#' subspace to which we constraint portfolios to have zero covariance. 
+#' subspace to which we constrain portfolios to have zero covariance. 
 #' The rowspace of \code{Gmat} must be spanned by the rowspace of \code{Jmat}.
 #' Defaults essentially to the \eqn{0 \times p}{0 x p} empty matrix.
 #'
@@ -168,8 +168,8 @@ mp_vcov <- function(X,feat=NULL,vcov.func=vcov,fit.intercept=TRUE,
 	ff <- f + as.numeric(fit.intercept)
 
 	twidlize <- function(M) { 
-		rbind(cbind(diag(ff),matrix(0,nrow=1,ncol=dim(M)[2])),
-					cbind(0,M)) 
+		rbind(cbind(diag(ff),matrix(0,nrow=ff,ncol=dim(M)[2])),
+					cbind(matrix(0,nrow=dim(M)[1],ncol=ff),M)) 
 	}
 
 	if (!is.null(Jmat)) 

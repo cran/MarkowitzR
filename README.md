@@ -1,7 +1,8 @@
 
 
-
 # MarkowitzR
+
+[![Build Status](https://travis-ci.org/shabbychef/MarkowitzR.png)](https://travis-ci.org/shabbychef/MarkowitzR)
 
 A number of utilities for dealing with the Markowitz portfolio.
 
@@ -21,7 +22,6 @@ if (require(devtools)) {
         ref = "master")
 }
 ```
-
 
 # Basic Usage
 
@@ -51,7 +51,6 @@ print(t(walds))
 ##             X1    X2   X3
 ## Intercept 0.83 -0.15 -1.8
 ```
-
 
 Now for conditional expectation:
 
@@ -109,7 +108,6 @@ print(t(walds.rse))
 ```
 
 ```r
-
 # errors should be asymptotically normal with the
 # given covariance.
 n.feat <- 5
@@ -148,7 +146,6 @@ qqline(Zerr, col = 2)
 
 ![plot of chunk marko_ism](github_extra/figure/marko_ism.png) 
 
-
 ### Fama French data
 
 Now load the Fama French 3 factor portfolios.
@@ -170,7 +167,6 @@ ff.ret <- cbind(ff.data[, "Mkt.RF"], ff.data[, c("HML",
     "SMB")] - rep(rfr, 2))
 colnames(ff.ret)[1] <- "MKT"
 ```
-
 
 Now analyze the Markowitz portfolio on them.
 
@@ -199,5 +195,4 @@ print(t(walds))
 ##           MKT  HML  SMB
 ## Intercept 1.6 0.26 -1.9
 ```
-
 

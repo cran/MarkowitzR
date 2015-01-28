@@ -1,5 +1,4 @@
-
-## ----'preamble', include=FALSE, warning=FALSE, message=FALSE-------------
+## ----'preamble', include=FALSE, warning=FALSE, message=FALSE----
 library(knitr)
 
 # set the knitr options ... for everyone!
@@ -55,5 +54,4 @@ gen_norm <- rnorm
 lseq <- function(from,to,length.out) { 
 	exp(seq(log(from),log(to),length.out = length.out))
 }
-
 

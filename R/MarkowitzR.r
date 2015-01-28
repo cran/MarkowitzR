@@ -62,7 +62,7 @@
 #'
 #' Brandt, Michael W. "Portfolio Choice Problems." Handbook of Financial
 #' Econometrics 1 (2009): 269--336. 
-#' \url{http://shr.receptidocs.ru/docs/5/4748/conv_1/file1.pdf#page=298}
+#' \url{https://faculty.fuqua.duke.edu/~mbrandt/papers/published/portreview.pdf}
 #'
 #' @import matrixcalc sandwich gtools
 #'
@@ -80,6 +80,16 @@ NULL
 #'
 #' \newcommand{\CRANpkg}{\href{http://CRAN.R-project.org/package=#1}{\pkg{#1}}}
 #' \newcommand{\MarkowitzR}{\CRANpkg{MarkowitzR}}
+#'
+#' @section Changes in \MarkowitzR{} Version 0.1502 (2015-01-26) :
+#' \itemize{
+#' \item conform to CRAN rules.
+#' }
+#'
+#' @section Changes in \MarkowitzR{} Version 0.1403 (2014-06-01) :
+#' \itemize{
+#' \item fix bug preventing multi-row hedging or constraint matrices.
+#' }
 #'
 #' @section \MarkowitzR{} Initial Version 0.1402 (2014-02-14) :
 #' \itemize{
