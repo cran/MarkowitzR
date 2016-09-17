@@ -65,6 +65,9 @@
 #' \url{https://faculty.fuqua.duke.edu/~mbrandt/papers/published/portreview.pdf}
 #'
 #' @import matrixcalc sandwich gtools
+#' @importFrom stats lm
+#' @importFrom stats na.omit
+#' @importFrom stats vcov
 #'
 #' @name MarkowitzR
 #' @rdname MarkowitzR
@@ -72,14 +75,24 @@
 #' @title statistics concerning the Markowitz portfolio
 #' @keywords package
 #' 
+#' @note 
 #' This package is maintained as a hobby. 
 #'
 NULL
 
 #' @title News for package 'MarkowitzR':
 #'
-#' \newcommand{\CRANpkg}{\href{http://CRAN.R-project.org/package=#1}{\pkg{#1}}}
+#' @description 
+#'
+#' News for package \sQuote{MarkowitzR}
+#'
+#' \newcommand{\CRANpkg}{\href{https://cran.r-project.org/package=#1}{\pkg{#1}}}
 #' \newcommand{\MarkowitzR}{\CRANpkg{MarkowitzR}}
+#'
+#' @section Changes in \MarkowitzR{} Version 0.9900 (2016-09-15) :
+#' \itemize{
+#' \item yet again, conform to CRAN rules.
+#' }
 #'
 #' @section Changes in \MarkowitzR{} Version 0.1502 (2015-01-26) :
 #' \itemize{

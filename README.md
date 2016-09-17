@@ -3,6 +3,12 @@
 # MarkowitzR
 
 [![Build Status](https://travis-ci.org/shabbychef/MarkowitzR.png)](https://travis-ci.org/shabbychef/MarkowitzR)
+[![codecov.io](http://codecov.io/github/shabbychef/MarkowitzR/coverage.svg?branch=master)](http://codecov.io/github/shabbychef/MarkowitzR?branch=master)
+[![CRAN](http://www.r-pkg.org/badges/version/MarkowitzR)](https://cran.r-project.org/package=MarkowitzR)
+[![Downloads](http://cranlogs.r-pkg.org/badges/MarkowitzR?color=green)](http://www.r-pkg.org/pkg/MarkowitzR)
+[![Total](http://cranlogs.r-pkg.org/badges/grand-total/MarkowitzR?color=green)](http://www.r-pkg.org/pkg/MarkowitzR)
+
+
 
 A number of utilities for dealing with the Markowitz portfolio.
 
@@ -140,11 +146,18 @@ print(summary(Zerr))
 ```
 
 ```r
-qqnorm(Zerr)
-qqline(Zerr, col = 2)
+library(ggplot2)
+ph <- ggplot(data.frame(Ze = Zerr), aes(sample = Ze)) + 
+    stat_qq() + geom_abline(slope = 1, intercept = 0, 
+    colour = "red")
+print(ph)
 ```
 
-![plot of chunk marko_ism](github_extra/figure/marko_ism.png) 
+<img src="github_extra/figure/marko_ism-1.png" title="plot of chunk marko_ism" alt="plot of chunk marko_ism" width="600px" height="500px" />
+
+```r
+# qqnorm(Zerr) qqline(Zerr,col=2)
+```
 
 ### Fama French data
 
@@ -152,18 +165,16 @@ Now load the Fama French 3 factor portfolios.
 
 
 ```r
-ff.data <- read.csv(paste0("http://www.quandl.com/api/v1/datasets/", 
-    "KFRENCH/FACTORS_M.csv?&trim_start=1926-07-31&trim_end=2013-10-31", 
-    "&sort_order=asc"), colClasses = c(Month = "Date"))
+library(Quandl)
+ff.data <- Quandl("KFRENCH/FACTORS_M", start_date = "1926-07-31", 
+    end_date = "2014-12-31", type = "xts")
 
-rownames(ff.data) <- ff.data$Month
-ff.data <- ff.data[, !(colnames(ff.data) %in% c("Month"))]
 # will not matter, but convert pcts:
 ff.data <- 0.01 * ff.data
 
 rfr <- ff.data[, "RF"]
 
-ff.ret <- cbind(ff.data[, "Mkt.RF"], ff.data[, c("HML", 
+ff.ret <- cbind(ff.data[, "Mkt-RF"], ff.data[, c("HML", 
     "SMB")] - rep(rfr, 2))
 colnames(ff.ret)[1] <- "MKT"
 ```
@@ -178,8 +189,8 @@ print(t(walds))
 ```
 
 ```
-##           MKT  HML  SMB
-## Intercept 3.9 0.26 -1.9
+##           MKT  HML SMB
+## Intercept   4 0.22  -2
 ```
 
 ```r
@@ -192,7 +203,7 @@ print(t(walds))
 ```
 
 ```
-##           MKT  HML  SMB
-## Intercept 1.6 0.26 -1.9
+##           MKT  HML SMB
+## Intercept 1.7 0.22  -2
 ```
 
