@@ -1,4 +1,4 @@
-# Copyright 2014-2014 Steven E. Pav. All Rights Reserved.
+# Copyright 2014-2020 Steven E. Pav. All Rights Reserved.
 # Author: Steven E. Pav
 #
 # This file is part of MarkowitzR.
@@ -58,13 +58,13 @@
 #' 311--331. \url{http://dx.doi.org/10.1111/j.1467-9469.2011.00729.x}
 #'
 #' Markowitz, Harry. "Portfolio Selection." The Journal of Finance 7, no. 1
-#' (1952): 77--91. \url{http://www.jstor.org/stable/2975974}
+#' (1952): 77--91. \url{https://www.jstor.org/stable/2975974}
 #'
 #' Brandt, Michael W. "Portfolio Choice Problems." Handbook of Financial
 #' Econometrics 1 (2009): 269--336. 
 #' \url{https://faculty.fuqua.duke.edu/~mbrandt/papers/published/portreview.pdf}
 #'
-#' @import matrixcalc sandwich gtools
+#' @import matrixcalc gtools
 #' @importFrom stats lm
 #' @importFrom stats na.omit
 #' @importFrom stats vcov
@@ -88,6 +88,11 @@ NULL
 #'
 #' \newcommand{\CRANpkg}{\href{https://cran.r-project.org/package=#1}{\pkg{#1}}}
 #' \newcommand{\MarkowitzR}{\CRANpkg{MarkowitzR}}
+#'
+#' @section Changes in \MarkowitzR{} Version 1.0.2 (2020-01-07) :
+#' \itemize{
+#' \item emergency fix for broken tests under atlas on CRAN.
+#' }
 #'
 #' @section Changes in \MarkowitzR{} Version 1.0.1 (2018-05-25) :
 #' \itemize{
