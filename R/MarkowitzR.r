@@ -49,20 +49,18 @@
 #' @template etc
 #' @template ref-SEP13
 #' @template ref-MBJ99
+#' @template ref-Markowitz52
 #'
 #' @references
 #'
 #' Bodnar, Taras and Okhrin, Yarema. "On the Product of Inverse Wishart
 #' and Normal Distributions with Applications to Discriminant Analysis 
 #' and Portfolio Theory." Scandinavian Journal of Statistics 38, no. 2 (2011):
-#' 311--331. \url{http://dx.doi.org/10.1111/j.1467-9469.2011.00729.x}
-#'
-#' Markowitz, Harry. "Portfolio Selection." The Journal of Finance 7, no. 1
-#' (1952): 77--91. \url{https://www.jstor.org/stable/2975974}
+#' 311--331. \doi{10.1111/j.1467-9469.2011.00729.x}
 #'
 #' Brandt, Michael W. "Portfolio Choice Problems." Handbook of Financial
 #' Econometrics 1 (2009): 269--336. 
-#' \url{https://faculty.fuqua.duke.edu/~mbrandt/papers/published/portreview.pdf}
+#' \url{https://scholars.duke.edu/publication/964964}
 #'
 #' @import matrixcalc gtools
 #' @importFrom stats lm
@@ -74,11 +72,12 @@
 #' @docType package
 #' @title statistics concerning the Markowitz portfolio
 #' @keywords package
+#' @aliases MarkowitzR-package
 #' 
 #' @note 
 #' This package is maintained as a hobby. 
 #'
-NULL
+"_PACKAGE"
 
 #' @title News for package 'MarkowitzR':
 #'
@@ -88,6 +87,12 @@ NULL
 #'
 #' \newcommand{\CRANpkg}{\href{https://cran.r-project.org/package=#1}{\pkg{#1}}}
 #' \newcommand{\MarkowitzR}{\CRANpkg{MarkowitzR}}
+#'
+#' @section Changes in \MarkowitzR{} Version 1.0.3 (2023-08-20) :
+#' \itemize{
+#' \item fix package documentation.
+#' }
+#'
 #'
 #' @section Changes in \MarkowitzR{} Version 1.0.2 (2020-01-07) :
 #' \itemize{
